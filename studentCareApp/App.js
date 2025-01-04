@@ -9,7 +9,11 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="login">
-        <Stack.Screen name="login" component={Login}></Stack.Screen>
+        <Stack.Screen
+          name="login"
+          options={{ title: "UOV Student Care" }}
+          component={Login}
+        ></Stack.Screen>
         <Stack.Screen name="profile" component={Profile}></Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>
@@ -25,6 +29,16 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  textContainer: {
+    width: "100%",
+    height: 60,
+    top: 0,
+    left: 0,
+    right: 0,
+    backgroundColor: "purple",
     alignItems: "center",
     justifyContent: "center",
   },
