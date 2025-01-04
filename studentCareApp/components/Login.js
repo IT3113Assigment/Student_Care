@@ -27,7 +27,7 @@ export default function Login() {
 
     if (student && student.password === pw) {
       alert("Login successfuly");
-      navigation.navigate("profile");
+      navigation.navigate("profile", userName);
     } else {
       setError("Invalid username or password");
     }
