@@ -7,15 +7,13 @@ import { StyleSheet, Text, View, Dimensions, Image } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Button } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
+import Header from "./header";
 
 export default function Login() {
   const navigation = useNavigation();
   return (
-    <View style={styles.container}>
-      <View style={styles.header}>
-        <Image source={require("../assets/uovlogo.png")} style={styles.logo} />
-      </View>
-      <Text>UoV Student Care</Text>
+    <View>
+      <Header />
       <Button onPress={() => navigation.navigate("profile")}>Login</Button>
       <StatusBar style="auto" />
     </View>
@@ -24,11 +22,11 @@ export default function Login() {
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: "column",
-    alignItems: "center",
+    flex: 1,
     justifyContent: "center",
-    padding: 20,
-    height: Dimensions.get("window").height,
+    alignItems: "center",
+    padding: 16,
+    width: "100%",
   },
   inputBox: {
     backgroundColor: "white",
