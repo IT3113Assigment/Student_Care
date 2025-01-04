@@ -2,6 +2,7 @@ import { View, Image, StyleSheet } from "react-native";
 
 export default function UserImage({ url }) {
   const profileImageUrl = url;
+  console.log(profileImageUrl);
 
   return (
     <View>

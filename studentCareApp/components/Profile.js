@@ -25,13 +25,13 @@ import {
 import UserImage from "./UserImage";
 import FooterButton from "./FooterButton";
 
-export default function Profile(route) {
+export default function Profile({ route }) {
   const userName = route.params;
   function getUserDetails(userName) {
     const userData = students.find((ele) => ele.username === userName);
     return userData;
   }
-  const user = getUserDetails("Alice.j");
+  const user = getUserDetails(userName);
   console.log(user);
 
   return (
@@ -79,7 +79,7 @@ export default function Profile(route) {
         </ScrollView>
 
         <View style={styles.footer}>
-          <FooterButton userCourseId={user.course_id} />
+          <FooterButton userCourseId={user.course_id} studentId={user.id} />
         </View>
       </View>
     </PaperProvider>

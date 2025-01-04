@@ -27,14 +27,15 @@ import FooterButton from "./FooterButton";
 import { courses } from "../db/StudentsDb";
 
 export default function Course({ route }) {
-  const tempCourseId = route.params;
+  const { courseId, stuId } = route.params;
+  const tempCourseId = courseId;
 
   function findCourseDetails(tempCourseId) {
     const courseDetails = courses.find((ele) => ele.id === tempCourseId);
     return courseDetails;
   }
 
-  const userCourseDetails = findCourseDetails(1);
+  const userCourseDetails = findCourseDetails(tempCourseId);
 
   console.log(userCourseDetails);
 
@@ -81,7 +82,7 @@ export default function Course({ route }) {
         <View style={styles.footer}>
           <Footer />
 
-          <FooterButton userCourseId={userCourseDetails.course_id} />
+          <FooterButton userCourseId={courseId} studentId={stuId} />
         </View>
       </View>
     </PaperProvider>

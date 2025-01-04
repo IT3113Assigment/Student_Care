@@ -1,8 +1,11 @@
 import { View, StyleSheet } from "react-native";
+import { Text } from "react-native-paper";
 export default function Footer() {
   return (
     <View style={styles.footer}>
-      <view style={styles.otherDetails}>Uov @2024</view>
+      <View style={styles.otherDetails}>
+        <Text>Uov @2024</Text>
+      </View>
     </View>
   );
 }

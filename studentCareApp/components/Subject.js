@@ -26,9 +26,9 @@ import UserImage from "./UserImage";
 import FooterButton from "./FooterButton";
 import { courses, marks, subjects } from "../db/StudentsDb";
 
-export default function Subject() {
-  const courseId = 1;
-  const stuId = 1;
+export default function Subject({ route }) {
+  const { courseId, stuId } = route.params;
+
   function getAllCourseSubjects(courseId) {
     const subs = subjects.filter((ele) => ele.course_id === courseId);
     return subs;
@@ -104,7 +104,7 @@ export default function Subject() {
         <View style={styles.footer}>
           <Footer />
 
-          <FooterButton />
+          <FooterButton userCourseId={courseId} studentId={stuId} />
         </View>
       </View>
     </PaperProvider>
