@@ -13,6 +13,7 @@ import Header from "./header";
 import { useState } from "react";
 import { students } from "../db/StudentsDb";
 import { TextInput } from "react-native-gesture-handler";
+import Footer from "./Footer";
 
 export default function Login() {
   const navigation = useNavigation();
@@ -26,43 +27,60 @@ export default function Login() {
 
     if (student && student.password === pw) {
       alert("Login successfuly");
+      navigation.navigate("profile");
     } else {
       setError("Invalid username or password");
     }
   };
   return (
-    <View>
-      <Header />
-      <Text style={styles.title}>STUDENT LOGIN</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="Username"
-        value={userName}
-        onChangeText={setUserName}
-      />
-      <View style={styles.password}>
+    <View style={styles.container}>
+      <View style={styles.header}>
+        <Header />
+      </View>
+      <br></br>
+      <br></br>
+
+      <View style={styles.b}>
+        <Text style={styles.title}>STUDENT LOGIN</Text>
+
         <TextInput
           style={styles.input}
-          placeholder="Password"
-          value={pw}
-          onChangeText={setPw}
-          secureTextEntry={!showpw}
+          placeholder="Username"
+          value={userName}
+          onChangeText={setUserName}
         />
 
-        <TouchableOpacity onPress={() => setShowPw(!showpw)}>
-          <Text>{showpw ? "👁️‍🗨️" : "👁️"}</Text>
-        </TouchableOpacity>
+        <View style={styles.password}>
+          <TextInput
+            style={styles.input}
+            placeholder="Password"
+            value={pw}
+            onChangeText={setPw}
+            secureTextEntry={!showpw}
+          />
+
+          <TouchableOpacity onPress={() => setShowPw(!showpw)}>
+            <Text>{showpw ? "👁️‍🗨️" : "👁️"}</Text>
+          </TouchableOpacity>
+        </View>
+
+        {error ? <Text style={styles.error}>{error}</Text> : null}
+        <Button style={styles.button} onPress={logging}>
+          <Text style={styles.buttonText}>Login</Text>
+        </Button>
       </View>
-      <Button style={styles.button} onPress={logging}>
-        <Text style={styles.buttonText}>Login</Text>
-      </Button>
+
+      <View style={styles.footer}>
+        <Footer />
+      </View>
     </View>
   );
 }
+const h = Dimensions.get("window").height;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    height: h,
     justifyContent: "center",
     alignItems: "center",
     padding: 16,
@@ -71,15 +89,17 @@ const styles = StyleSheet.create({
   inputBox: {
     backgroundColor: "white",
   },
-  body: {
-    flex: 4,
+  b: {
+    height: h * 0.69,
+    width: "100%",
   },
   header: {
-    flex: 1,
+    height: h * 0.15,
+    width: "100%",
   },
   footer: {
-    backgroundColor: "black",
-    height: 100,
+    height: h * 0.1,
+    width: "100%",
   },
 
   logo: {
@@ -116,5 +136,13 @@ const styles = StyleSheet.create({
   buttonText: {
     color: "#fff",
     fontSize: 16,
+  },
+  error: {
+    padding: 3,
+    color: "black",
+    marginTop: 10,
+    backgroundColor: "#f08080",
+    borderRadius: 4,
+    fontWeight: "bold",
   },
 });
