@@ -53,6 +53,9 @@ export default function Login() {
           <Text>{showpw ? "👁️‍🗨️" : "👁️"}</Text>
         </TouchableOpacity>
       </View>
+      <Button style={styles.button} onPress={logging}>
+        <Text style={styles.buttonText}>Login</Text>
+      </Button>
     </View>
   );
 }
@@ -103,7 +106,7 @@ const styles = StyleSheet.create({
   },
   button: {
     marginTop: 16,
-    padding: 12,
+    padding: 0,
     backgroundColor: "purple",
     borderRadius: 4,
     width: "100%",
