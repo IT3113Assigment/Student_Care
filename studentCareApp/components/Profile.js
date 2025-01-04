@@ -1,18 +1,17 @@
 import { StatusBar } from "expo-status-bar";
 import {
   StyleSheet,
-  Text,
   View,
   Dimensions,
   Touchable,
   TouchableOpacity,
+  ScrollView,
 } from "react-native";
-import { Button } from "react-native-paper";
+
 import { useNavigation } from "@react-navigation/native";
 import Header from "./header";
 import { useState } from "react";
 import { students } from "../db/StudentsDb";
-import { TextInput } from "react-native-gesture-handler";
 import Footer from "./Footer";
 import {
   PaperProvider,
@@ -23,11 +22,12 @@ import {
   Divider,
   Divide,
 } from "react-native-paper";
+import UserImage from "./UserImage";
 
 export default function Profile(route) {
   const userName = route.params;
   function getUserDetails(userName) {
-    const userData = students.find((ele) => (ele.username = userName));
+    const userData = students.find((ele) => ele.username === userName);
     return userData;
   }
   const user = getUserDetails("Alice.j");
@@ -41,9 +41,30 @@ export default function Profile(route) {
         </View>
         <br></br>
         <br></br>
-        <View style={styles.b}>
-          <View style={styles.card}></View>
-        </View>
+        <ScrollView style={styles.s}>
+          <View style={styles.b}>
+            <View style={styles.card}>
+              <UserImage url={user.profile_pic} />
+              <Text style={styles.user} variant="headlineLarge">
+                {user.username}
+              </Text>
+              <Text style={styles.otherDetails} variant="bodyLarge">
+                Age:{user.age}|Gender:{user.gender}
+              </Text>
+              <br></br>
+              <Divider style={styles.topics}>
+                <Text variant="bodyMedium" style={styles.topics}>
+                  Contact Information
+                </Text>
+                <br></br>
+                <Text style={styles.description}>Email:{user.email}</Text>
+                <Text style={styles.description}>Phone:{user.phone}</Text>
+                <Text style={styles.description}>Address:{user.address}</Text>
+              </Divider>
+            </View>
+          </View>
+        </ScrollView>
+
         <View style={styles.footer}>
           <Footer />
         </View>
@@ -91,7 +112,7 @@ const styles = StyleSheet.create({
     width: 300,
     height: 400,
   },
-  userName: {
+  user: {
     color: "black",
     fontWeight: "bold",
   },
