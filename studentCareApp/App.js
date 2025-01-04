@@ -1,4 +1,5 @@
 import { StatusBar } from "expo-status-bar";
+import "react-native-gesture-handler";
 import { StyleSheet, Text, View } from "react-native";
 import Login from "./components/Login";
 import Profile from "./components/Profile";
@@ -9,7 +10,11 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="login">
-        <Stack.Screen name="login" component={Login}></Stack.Screen>
+        <Stack.Screen
+          name="login"
+          component={Login}
+          options={{ headershown: false }}
+        ></Stack.Screen>
         <Stack.Screen name="profile" component={Profile}></Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>

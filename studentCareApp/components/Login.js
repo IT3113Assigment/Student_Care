@@ -1,21 +1,58 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, Dimensions, Image } from "react-native";
-// import {
-//   createStaticNavigation,
-//   useNavigation,
-// } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Dimensions,
+  Touchable,
+  TouchableOpacity,
+} from "react-native";
 import { Button } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
 import Header from "./header";
+import { useState } from "react";
+import { students } from "../db/StudentsDb";
+import { TextInput } from "react-native-gesture-handler";
 
 export default function Login() {
   const navigation = useNavigation();
+  const [showpw, setShowPw] = useState(false);
+  const [userName, setUserName] = useState("");
+  const [pw, setPw] = useState("");
+  const [error, setError] = useState("");
+
+  const logging = () => {
+    const student = students.find((s) => s.username === userName);
+
+    if (student && student.password === pw) {
+      alert("Login successfuly");
+    } else {
+      setError("Invalid username or password");
+    }
+  };
   return (
     <View>
       <Header />
-      <Button onPress={() => navigation.navigate("profile")}>Login</Button>
-      <StatusBar style="auto" />
+      <Text style={styles.title}>STUDENT LOGIN</Text>
+      <TextInput
+        style={styles.input}
+        placeholder="Username"
+        value={userName}
+        onChangeText={setUserName}
+      />
+      <View style={styles.password}>
+        <TextInput
+          style={styles.input}
+          placeholder="Password"
+          value={pw}
+          onChangeText={setPw}
+          secureTextEntry={!showpw}
+        />
+
+        <TouchableOpacity onPress={() => setShowPw(!showpw)}>
+          <Text>{showpw ? "👁️‍🗨️" : "👁️"}</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }
@@ -45,5 +82,36 @@ const styles = StyleSheet.create({
   logo: {
     width: Dimensions.get("window").width,
     height: 100,
+  },
+  title: {
+    fontSize: 36,
+    marginBottom: 16,
+    textAlign: "center",
+  },
+  input: {
+    width: "100%",
+    padding: 8,
+    marginVertical: 8,
+    borderWidth: 1,
+    borderColor: "#ccc",
+    borderRadius: 4,
+  },
+  password: {
+    flexDirection: "row",
+    alignItems: "center",
+    width: "100%",
+  },
+  button: {
+    marginTop: 16,
+    padding: 12,
+    backgroundColor: "purple",
+    borderRadius: 4,
+    width: "100%",
+    alignItems: "center",
+    borderRadius: 25,
+  },
+  buttonText: {
+    color: "#fff",
+    fontSize: 16,
   },
 });
