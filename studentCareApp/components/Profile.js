@@ -78,7 +78,7 @@ export default function Profile(route) {
         </ScrollView>
 
         <View style={styles.footer}>
-          <Footer />
+          <Footer userCourseId={user.course_id} />
         </View>
       </View>
     </PaperProvider>
