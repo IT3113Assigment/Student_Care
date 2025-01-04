@@ -23,6 +23,7 @@ import {
   Divide,
 } from "react-native-paper";
 import UserImage from "./UserImage";
+import FooterButton from "./FooterButton";
 
 export default function Profile(route) {
   const userName = route.params;
@@ -78,7 +79,7 @@ export default function Profile(route) {
         </ScrollView>
 
         <View style={styles.footer}>
-          <Footer userCourseId={user.course_id} />
+          <FooterButton userCourseId={user.course_id} />
         </View>
       </View>
     </PaperProvider>
