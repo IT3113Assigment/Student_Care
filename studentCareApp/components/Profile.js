@@ -60,6 +60,18 @@ export default function Profile(route) {
                 <Text style={styles.description}>Email:{user.email}</Text>
                 <Text style={styles.description}>Phone:{user.phone}</Text>
                 <Text style={styles.description}>Address:{user.address}</Text>
+                <br></br>
+                <Divider style={styles.topics}>
+                  <Text variant="bodyMedium" style={styles.topics}>
+                    Biological Information
+                  </Text>
+                  <br></br>
+                  <Text style={styles.description}>Gender:{user.gender}</Text>
+                  <Text style={styles.description}>Age:{user.age}</Text>
+                  <Text style={styles.description}>
+                    Blood group:{user.blood_group}
+                  </Text>
+                </Divider>
               </Divider>
             </View>
           </View>
